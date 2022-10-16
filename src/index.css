@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Pixel'; /*a name to be used later*/
+  src: url('/public/Pixellari.ttf');
+  src: url('/public/Pixellari.woff'),
+       url('/public/Pixellari.woff2');
+}
+
+* {
+  font-family: 'Pixel';
+}
+
+body {
+  background-image: url('bg.png');
+  background-size: 40%;
+  background-repeat: repeat;
+  backdrop-filter: blur(1px);
+}
+
+.my-shadow {
+  box-shadow: 13px 13px 0px -3px rgba(0,0,0,1);
+  -webkit-box-shadow: 13px 13px 0px -3px rgba(0,0,0,1);
+  -moz-box-shadow: 13px 13px 0px -3px rgba(0,0,0,1);
+}
+
+
+
+#root{
+  height: 100vh;
+}
