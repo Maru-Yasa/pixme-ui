@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { getMessagaes, logout, me } from "../api/Api"
-import { Board, Button, Spinner } from "../components/Components"
+import { Anchor, Board, Button, Spinner } from "../components/Components"
 import { Message } from "../components/Message"
 import { useAuthDispatch, useAuthState } from "../context/AuthContext"
 
@@ -12,7 +13,8 @@ export const Profile = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        getMessagaes().then((data) => {
+        console.log(auth.data.user.id);
+        getMessagaes(auth.data.user.id).then((data) => {
             setMessages(data)
         }).catch((err) => {
             console.log(err.message);
@@ -32,11 +34,12 @@ export const Profile = () => {
     }
 
     return <>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center mb-10 p-10">
             <Board className={'flex flex-col bg-white'}>
                 <h1 className="text-3xl">Hello, {auth.profile.username}</h1>
                 <div className="flex gap-1 justify-center">
                     <Button className={'bg-yellow-300'}>Edit Profile</Button>
+                    <Anchor href={`/form?user=${auth.data.user.id}`} className="bg-yellow-200">Your form</Anchor>
                     <Button className={'bg-green-400'}>Copy link</Button>
                     <Button className={'bg-red-500'} onClick={handleLogout}>Logout</Button>
                 </div>
@@ -46,9 +49,9 @@ export const Profile = () => {
                 {isLoading ? <>
                     <Spinner />
                 </> : <>
-                    <div className="grid grid-cols-12 mt-3">
+                    <div className="grid grid-cols-2 md:grid-cols-4 mt-3 content-center gap-5">
                         {messages && messages.map((data) => {
-                            return <Message className="md:col-span-3 col-span-6" key={data.id} data={data} />
+                            return <Message className="" key={data.id} data={data} />
                         })}
                     </div>
                 </>}

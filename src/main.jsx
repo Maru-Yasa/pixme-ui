@@ -10,12 +10,21 @@ import { Profile } from './pages/Profile'
 import { Register } from './pages/Register'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { Google } from './pages/Google'
+import { Form } from './pages/Form'
+import { Success } from './pages/Success'
+import { DetailMessage } from './pages/DetailMessage'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <Route pathName={'/'}>
         <Index />
+      </Route>
+      <Route pathName={'/form'}>
+        <Form />
+      </Route>
+      <Route pathName={'/success'}>
+        <Success />
       </Route>
       <GuestRoute pathName={'/login'}>
         <Login />
@@ -25,6 +34,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </GuestRoute>
       <AuthRoute pathName={'/profile'} redirect={'/login'}>
         <Profile />
+      </AuthRoute>
+      <AuthRoute pathName={'/message'} redirect={'/login'}>
+        <DetailMessage />
       </AuthRoute>
       <GuestRoute pathName={'/google'}>
         <Google />

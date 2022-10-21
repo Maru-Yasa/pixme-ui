@@ -82,14 +82,24 @@ export const me = async (user_id) => {
     return profiles[0] ? profiles[0] : null
 }
 
-export const getMessagaes = async () => {
-    let {data: messages, error} = await supabase.from('messages').select('*').order('created_at', {ascending: false})
+export const getMessagaes = async (user_id) => {
+    let {data: messages, error} = await supabase.from('messages').select('*').eq('user_id', user_id).order('created_at', {ascending: false})
 
     if(error){
         throw error
     }
     
     return messages
+}
+
+export const getMessageById = async (user_id,id) => {
+    let {data: message, error} = await supabase.from('messages').select('*').eq('id', id).eq('user_id', user_id).order('created_at', {ascending: false})
+
+    if(error){
+        throw error
+    }
+    
+    return message[0] ? message[0] : null
 }
 
 export const postAuth = async (dispatch) => {
@@ -129,4 +139,31 @@ export const postAuth = async (dispatch) => {
     localStorage.setItem('_user', JSON.stringify(dataAuth))
     dispatch({type: 'LOGIN_SUCCESS', payload: dataAuth, profile: me[0]})
     return data
+}
+
+export const getUserById = async (user_id) => {
+    const {data: profile, error} = await supabase.from('profiles').select('*').eq('user_id', user_id)
+    if(error){
+        throw error
+    }
+
+    return profile[0]
+
+}
+
+export const sendMessage = async (formData) => {
+    const { data, error } = await supabase
+        .from('messages')
+        .insert([
+            {user_id: formData.user_id, message: formData.message},
+        ])
+
+    if(error){
+        throw error
+    }
+
+    console.log(data);
+
+    return data
+
 }

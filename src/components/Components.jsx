@@ -10,6 +10,12 @@ export const Board = ({className, children}) => {
     </div>
 }
 
+export const Anchor = ({ className, type, href, children }) => {
+    return <>
+        <a type={type} href={href} className={`px-2 py-1 align-middle border-2 text-center border-black ${className}`}>{children}</a>
+    </>
+}
+
 export const Spinner = ({ className }) => {
     return <>
         <svg className={`animate-spin -ml-1 mr-3 h-5 w-5 text-white ${className}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

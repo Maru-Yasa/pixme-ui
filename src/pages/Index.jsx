@@ -1,5 +1,5 @@
 import { Button } from "../components/Components"
-
+import Dino from '../assets/dino.gif'
 export const Index = () => {
 
     const getStarted = (e) => {
@@ -15,7 +15,7 @@ export const Index = () => {
     return <>
     
         <div className="min-h-full min-w-full flex flex-col justify-center items-center">
-            <h1 className="text-5xl">Pixme</h1>
+            <h1 className="text-5xl"><img src={Dino} width={32} alt="" /> Pixme</h1>
             <h2 className="text-md">Get anonymous feedback from your Friends,</h2>
             <span className="text-red-500">(if you had friend tho)</span>
             <div className="flex gap-4">

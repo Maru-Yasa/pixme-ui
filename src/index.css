@@ -14,10 +14,17 @@
 }
 
 body {
-  background-image: url('bg.png');
+  background-image: url('/bg.png');
   background-size: 40%;
   background-repeat: repeat;
   backdrop-filter: blur(1px);
+  animation: AnimateBG 50s linear infinite;
+}
+
+@keyframes AnimateBG { 
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
 }
 
 .my-shadow {
@@ -26,8 +33,15 @@ body {
   -moz-box-shadow: 13px 13px 0px -3px rgba(0,0,0,1);
 }
 
-
+.with-bg{
+  background-image: url('/bg.png');
+  background-size: 40%;
+  background-repeat: repeat;
+  backdrop-filter: blur(1px);
+  animation: AnimateBG 50s linear infinite;
+}
 
 #root{
   height: 100vh;
+  padding: 0;
 }
