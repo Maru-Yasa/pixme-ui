@@ -37,7 +37,7 @@ export const Login = () => {
 
     return <>
 
-        <div className="w-full h-full flex justify-center items-center">
+        <div className="w-full px-10 h-full flex justify-center items-center">
             <div className="grid grid-cols-12">
                 <Board className={'max-h-1/2 bg-white md:col-span-6 col-span-12 md:col-start-4 justify-start align-start grid grid-cols-12'}>
                     <div className="col-span-3 text-start">

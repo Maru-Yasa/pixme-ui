@@ -102,7 +102,7 @@ export const DetailMessage = () => {
                     {isLoading ? "Loading..." : <>
                         <div className="text-start gap-3 col-span-12 grid grid-cols-1">
                             <div className="bg-blue-300 flex items-center">
-                                <h1 className={`text-3xl ${isScreenShoot.data && 'mb-5 mx-3'}`}>Send me a message :</h1>
+                                <h1 className={`text-3xl ${isScreenShoot.data && 'mb-5 mx-3'}`}>Send me a message</h1>
                             </div>
                             <div className="flex items-center">
                                 <p className="text-xl break-all">{message.message}</p>

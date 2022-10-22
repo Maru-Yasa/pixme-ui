@@ -51,7 +51,7 @@ export const Form = () => {
 
 
             {user && <>
-                <div className="w-full h-full flex justify-center items-center">
+                <div className="w-full px-10 h-full flex justify-center items-center">
                     <div className="grid grid-cols-12">
                         <Board className={'md:col-span-6 col-span-12 md:col-start-4 bg-white flex flex-col justify-start w-full min-w-full max-w-full'}>
                             <div className="text-start mb-3">

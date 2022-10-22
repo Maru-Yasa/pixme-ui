@@ -193,7 +193,7 @@ export const deleteMessageById = async (id) => {
 }
 
 export const editProfile = async (user_id, formData) => {
-    const {data, error} = await supabase.from('profiles').update(formData).eq('user_id', user_id);
+    const {data, error} = await supabase.from('profiles').update({username: formData.username}).eq('user_id', user_id);
 
     if(error){
         throw error

@@ -49,13 +49,13 @@ export const Profile = () => {
                 <div className="mb-3 text-center">
                     <span className="text-green-500">{isCopied && 'Link copied to clipboard'}</span>
                 </div>
-                <div className="flex gap-1 justify-center">
-                    <Anchor href={'/edit-profile'} className={'bg-yellow-300 hover:bg-yellow-200'}>Edit Profile</Anchor>
-                    <Anchor href={`/form?user=${auth.data.user.id}`} className="bg-yellow-200 hover:bg-yellow-100">Your form</Anchor>
+                <div className="flex items-stretch gap-1 justify-center">
+                    <Anchor href={'/edit-profile'} className={'bg-yellow-300 hover:bg-yellow-200 flex items-center'}>Edit Profile</Anchor>
+                    <Anchor href={`/form?user=${auth.data.user.id}`} className="bg-yellow-200 hover:bg-yellow-100 flex items-center">Your form</Anchor>
                     <CopyToClipboard text={`${location.origin}/form?user=${auth.data.user.id}`} onCopy={() => setIsCopied(true)}>
-                        <Button className={'bg-green-400 hover:bg-green-300'}><i className="bi bi-share-fill"></i> Copy link</Button>
+                        <Button className={'bg-green-400 hover:bg-green-300'}><i className="bi bi-share-fill"></i> copy link</Button>
                     </CopyToClipboard>
-                    <Button className={'bg-red-500 hover:bg-red-400'} onClick={handleLogout}>Logout</Button>
+                    <Button className={'bg-red-500 hover:bg-red-400 flex items-center'} onClick={handleLogout}>Logout</Button>
                 </div>
             </Board>
 
