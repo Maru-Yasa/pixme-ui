@@ -73,7 +73,7 @@ export const Form = () => {
                                 </form>
                             </div>
                         </Board>
-                        <div className="col-span-12 mt-5">
+                        <div className="col-span-12 mt-5 text-center">
                             <button onClick={() => {window.location.pathname = '/register'}} className="underline">
                                 Want to get feedback too?, register now!
                             </button>

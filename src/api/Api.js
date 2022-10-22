@@ -167,3 +167,60 @@ export const sendMessage = async (formData) => {
     return data
 
 }
+
+export const setMessageOpened = async (user_id,id) => {
+    const { data, error } = await supabase.from('messages').update({
+        opened: true
+    }).eq('id', `${id}`).eq('user_id', user_id)
+
+    if(error){
+        throw error
+    }
+
+    return data
+
+}
+
+export const deleteMessageById = async (id) => {
+    const { data, error } = await supabase.from('messages').delete().eq('id', id)
+
+    if(error){
+        throw error
+    }
+
+    return data
+
+}
+
+export const editProfile = async (user_id, formData) => {
+    const {data, error} = await supabase.from('profiles').update(formData).eq('user_id', user_id);
+
+    if(error){
+        throw error
+    }
+
+    return data
+
+}
+
+export const sendResetPassword = async (email) => {
+    const {data, error} = await supabase.auth.resetPasswordForEmail(email,{redirectTo:`${location.origin}/reset-password`})
+    if(error){
+        throw error
+    }
+
+    return data
+}
+
+export const resetPassword = async (formData) => {
+    const {data, error} = await supabase.auth.updateUser({
+        password: formData.password
+    })
+
+    if (error) {
+        throw error
+    }
+
+    return data
+
+}

@@ -50,6 +50,12 @@ export const AuthReducer = (initialState, action) => {
                 errorMessage: action.error,
                 isLoading: false
             }
+        case "AFTER_UPDATE_PROFILE":
+            return  {
+                ...initialState,
+                isLoading: false,
+                profile: action.profile
+            }
         default:
             throw new Error('type not defined')
     }

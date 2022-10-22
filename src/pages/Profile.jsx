@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+import CopyToClipboard from "react-copy-to-clipboard"
 import { useNavigate } from "react-router-dom"
 import { getMessagaes, logout, me } from "../api/Api"
 import { Anchor, Board, Button, Spinner } from "../components/Components"
@@ -11,20 +12,28 @@ export const Profile = () => {
 
     const [messages, setMessages] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [isCopied, setIsCopied] = useState(false)
 
-    useEffect(() => {
-        console.log(auth.data.user.id);
+    const handleDeleteCallback = useCallback(() => {
+        handleGetMessage()
+    }, [])
+
+    const handleGetMessage = () => {
+        console.log('reset');
         getMessagaes(auth.data.user.id).then((data) => {
             setMessages(data)
         }).catch((err) => {
             console.log(err.message);
         })
+    }
+
+    useEffect(() => {
+        handleGetMessage()
     }, [])
 
     useEffect(() => {
         if(messages !== null){
             setIsLoading(false)
-            console.log(messages);
         }
     }, [messages])
 
@@ -36,12 +45,17 @@ export const Profile = () => {
     return <>
         <div className="flex flex-col justify-center mb-10 p-10">
             <Board className={'flex flex-col bg-white'}>
-                <h1 className="text-3xl">Hello, {auth.profile.username}</h1>
+                <h1 className="text-3xl text-center">Hello, {auth.profile.username}</h1>
+                <div className="mb-3 text-center">
+                    <span className="text-green-500">{isCopied && 'Link copied to clipboard'}</span>
+                </div>
                 <div className="flex gap-1 justify-center">
-                    <Button className={'bg-yellow-300'}>Edit Profile</Button>
-                    <Anchor href={`/form?user=${auth.data.user.id}`} className="bg-yellow-200">Your form</Anchor>
-                    <Button className={'bg-green-400'}>Copy link</Button>
-                    <Button className={'bg-red-500'} onClick={handleLogout}>Logout</Button>
+                    <Anchor href={'/edit-profile'} className={'bg-yellow-300 hover:bg-yellow-200'}>Edit Profile</Anchor>
+                    <Anchor href={`/form?user=${auth.data.user.id}`} className="bg-yellow-200 hover:bg-yellow-100">Your form</Anchor>
+                    <CopyToClipboard text={`${location.origin}/form?user=${auth.data.user.id}`} onCopy={() => setIsCopied(true)}>
+                        <Button className={'bg-green-400 hover:bg-green-300'}><i className="bi bi-share-fill"></i> Copy link</Button>
+                    </CopyToClipboard>
+                    <Button className={'bg-red-500 hover:bg-red-400'} onClick={handleLogout}>Logout</Button>
                 </div>
             </Board>
 
@@ -51,7 +65,7 @@ export const Profile = () => {
                 </> : <>
                     <div className="grid grid-cols-2 md:grid-cols-4 mt-3 content-center gap-5">
                         {messages && messages.map((data) => {
-                            return <Message className="" key={data.id} data={data} />
+                            return <Message callBack={handleDeleteCallback} className="" key={data.id} data={data} />
                         })}
                     </div>
                 </>}

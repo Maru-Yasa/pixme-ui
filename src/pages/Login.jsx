@@ -1,5 +1,5 @@
 import { login, loginWithGoogle } from "../api/Api"
-import { Board, Button, Spinner } from "../components/Components"
+import { Anchor, Board, Button, Spinner } from "../components/Components"
 import { useAuthDispatch, useAuthState } from "../context/AuthContext"
 import GoogleIcon from '../assets/Google.png'
 
@@ -28,7 +28,6 @@ export const Login = () => {
         formData.forEach(function(value, key){
             credentials[key] = value;
         });
-        console.log(credentials);
         login(dispatch,credentials).then(() => {
 
         }).catch((err) => {
@@ -53,6 +52,9 @@ export const Login = () => {
                             <div className="mb-3 flex flex-col text-start">
                                 <label htmlFor="">Password</label>
                                 <input required type="password" name="password" className="border-2 border-black px-2 py-1" placeholder="your password" />
+                            </div>
+                            <div className="mb-3 text-start">
+                                <a href="/forgot-password" className="underline hover:text-blue-500">Forgot password?</a>
                             </div>
                             <div className="mb-3 text-start">
                                 {auth.errorMessage && <>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useScreenshot } from "use-react-screenshot"
-import { getMessageById } from "../api/Api"
-import { Board, Button, Spinner } from "../components/Components"
+import { getMessageById, setMessageOpened } from "../api/Api"
+import { Anchor, Board, Button, Spinner } from "../components/Components"
 import { useAuthState } from "../context/AuthContext"
 import { params } from "../lib/helpers"
 
@@ -51,7 +51,16 @@ export const DetailMessage = () => {
 
     useEffect(() => {
         if(message){
-            setIsLoading(false)
+            if(!message.opened){
+                setMessageOpened(auth.data.user.id, message.id).then(() => {
+                    setIsLoading(false)
+                }).catch((err) => {
+                    console.log(err.message);
+                    setIsLoading(false)
+                })
+            }else{
+                setIsLoading(false)
+            }
         }
     }, [message])
 
@@ -88,27 +97,28 @@ export const DetailMessage = () => {
     return <>
     
         <div ref={screenRef} className="w-full h-full flex justify-center items-center with-bg p-10">
-            <div className="w-full grid grid-cols-12">
-                <Board className={'relative bg-white md:col-span-4 col-span-12 md:col-start-5'}>
+            <div className="w-full flex flex-col justify-center items-center">
+                <Board className={'relative md:w-96 w-50 h-auto bg-white md:col-span-4 col-span-12 md:col-start-5 grid grid-cols-12'}>
                     {isLoading ? "Loading..." : <>
-                        <div className="text-start flex flex-col gap-3">
-                            <div className="bg-blue-300 p-3 flex items-center">
-                                <h1 className="text-3xl">Send me a message :</h1>
+                        <div className="text-start gap-3 col-span-12 grid grid-cols-1">
+                            <div className="bg-blue-300 flex items-center">
+                                <h1 className={`text-3xl ${isScreenShoot.data && 'mb-5 mx-3'}`}>Send me a message :</h1>
                             </div>
-                            <h3 className="text-xl text-black-400 p-3">
-                                {message.message}
-                            </h3>
+                            <div className="flex items-center">
+                                <p className="text-xl break-all">{message.message}</p>
+                            </div>
                         </div>
                     </>}
                 </Board>
                 {!isScreenShoot.data && <>
-                    <div ref={shareButton} className="md:col=span-4 mt-5 col-span-12 md:col-start-5 flex gap-3">
+                    <div ref={shareButton} className="md:col=span-4 mt-5 col-span-12 md:col-start-5 flex items-start justify-start gap-3">
                         <Button onClick={handleShare} className={'shadow-xl hover:shadow-md bg-yellow-500'}> <i className="bi bi-share-fill"></i> </Button>
                         <Button onClick={() => getimage()} className={'shadow-xl hover:shadow-md bg-yellow-500'}> <i className="bi bi-camera-fill"></i> </Button>
+                        <Anchor href={'/profile'} className="bg-red-500 hover:bg-red-400 shadow-xl hover:shadow-md">Back</Anchor>
                     </div>
                 </>}
-                <div className="col-span-12 mt-5">
-                    Pixme.<span className="text-blue-500">site</span>
+                <div className="col-span-12 mt-5 text-center">
+                    Pixme.<span className="text-center text-blue-500">site</span>
                 </div>
             </div>
         </div>
