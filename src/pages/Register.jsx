@@ -3,6 +3,7 @@ import { Board, Button, Spinner } from "../components/Components"
 import { useAuthDispatch, useAuthState } from "../context/AuthContext"
 import GoogleIcon from '../assets/Google.png'
 import { intializeHotJar } from "../api/hotjar"
+import { useEffect } from "react"
 
 export const Register = () => {
 
