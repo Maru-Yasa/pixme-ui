@@ -17,12 +17,11 @@ export const Google = () => {
 
     useEffect(() => {
         if(user){
-            console.log(user);
             window.location.pathname = '/profile'
         }
     }, [user])
 
     return <>
-        <h1>Pleas wait ...</h1>
+        <h1 className="text-center">Pleas wait ...</h1>
     </>
 }

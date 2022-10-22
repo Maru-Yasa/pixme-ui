@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useScreenshot } from "use-react-screenshot"
 import { getMessageById, setMessageOpened } from "../api/Api"
+import { intializeHotJar } from "../api/hotjar"
 import { Anchor, Board, Button, Spinner } from "../components/Components"
 import { useAuthState } from "../context/AuthContext"
 import { params } from "../lib/helpers"
@@ -47,6 +48,7 @@ export const DetailMessage = () => {
                 console.log(err.message);
             })
         }
+        intializeHotJar()
     },[])
 
     useEffect(() => {

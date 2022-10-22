@@ -1,5 +1,7 @@
 import { Button } from "../components/Components"
 import Dino from '../assets/dino.gif'
+import { useEffect } from "react"
+import { intializeHotJar } from "../api/hotjar"
 export const Index = () => {
 
     const getStarted = (e) => {
@@ -11,6 +13,10 @@ export const Index = () => {
         e.preventDefault()
         window.location = 'https://saweria.co/Maru'
     }
+
+    useEffect(() => {
+        intializeHotJar()
+    }, [])
 
     return <>
     

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserById, sendMessage } from "../api/Api";
+import { intializeHotJar } from "../api/hotjar";
 import { Board, Button, Spinner } from "../components/Components"
 import { params } from "../lib/helpers";
 
@@ -36,6 +37,7 @@ export const Form = () => {
                 console.log(err.message);
             })
         }
+        intializeHotJar()
     }, [])
 
     useEffect(() => {

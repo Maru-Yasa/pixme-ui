@@ -1,10 +1,13 @@
+import { intializeHotJar } from "../api/hotjar"
 import { Anchor, Button } from "../components/Components"
 import { useAuthState } from "../context/AuthContext"
 
 export const Success = () => {
 
     const auth = useAuthState()
-
+    useEffect(() => {
+        intializeHotJar()
+    }, [])
     return <>
     
         <div className="h-full px-5 flex flex-col justify-center items-center">

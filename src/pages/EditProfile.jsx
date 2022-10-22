@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { editProfile, me, sendResetPassword } from "../api/Api"
+import { intializeHotJar } from "../api/hotjar"
 import { Anchor, Board, Button, Spinner } from "../components/Components"
 import { useAuthDispatch, useAuthState } from "../context/AuthContext"
 export const EditProfile = () => {
@@ -40,6 +41,11 @@ export const EditProfile = () => {
             setState({message: err.message, error:true, done: true})
         })
     }
+
+
+    useEffect(() => {
+        intializeHotJar()
+    }, [])
 
     return <>
 

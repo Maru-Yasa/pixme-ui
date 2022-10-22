@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { sendResetPassword } from "../api/Api"
+import { intializeHotJar } from "../api/hotjar"
 import { Board, Button, Spinner } from "../components/Components"
 
 export const ForgotPassword = () => {
@@ -16,6 +17,10 @@ export const ForgotPassword = () => {
             setState({...state, message: err.message, error: true, done: true, isLoading: false})
         })
     }
+
+    useEffect(() => {
+        intializeHotJar()
+    }, [])
 
     return <>
 
