@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { editProfile, me, sendResetPassword } from "../api/Api"
 import { intializeHotJar } from "../api/hotjar"
 import { Anchor, Board, Button, Spinner } from "../components/Components"

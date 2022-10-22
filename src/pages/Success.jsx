@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { intializeHotJar } from "../api/hotjar"
 import { Anchor, Button } from "../components/Components"
 import { useAuthState } from "../context/AuthContext"
