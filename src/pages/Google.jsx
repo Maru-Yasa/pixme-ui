@@ -9,11 +9,11 @@ export const Google = () => {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        // postAuth(dispatch).then((data) => {
-        //     setUser(data)
-        // }).catch((err) => {
-        //     console.log(err);
-        // })
+        postAuth(dispatch).then((data) => {
+            setUser(data)
+        }).catch((err) => {
+            console.log(err);
+        })
     }, [])
 
     useEffect(() => {
@@ -23,11 +23,12 @@ export const Google = () => {
     }, [user])
 
     return <>
-        <div className="h-full flex flex-col justify-center items-center">
-            <h1 className="text-center">This method currently disabled due to many bug reports</h1>
+        <div className="h-full flex flex-col justify-center items-center text-center">
+            {/* <h1 className="text-center">This method currently disabled due to many bug reports</h1>
             <div className="flex">
                 <Anchor href={'/login'} className={'bg-red-500 shadow-xl hover:shadow-md mt-5'}>Go back</Anchor>
-            </div>
+            </div> */}
+            <h1 className="text-center">Please wait...</h1>
         </div>
     </>
 }

@@ -47,7 +47,9 @@ export const Profile = () => {
     return <>
         <div className="flex flex-col justify-center mb-10 p-10">
             <Board className={'flex flex-col bg-white'}>
-                <h1 className="text-3xl text-center">Hello, {auth.profile.username}</h1>
+                <h1 className="text-3xl text-center">Hello, {auth.profile.username ? auth.profile.username : <>
+                    <span className="text-red-500">please edit your username</span>
+                </>}</h1>
                 <div className="mb-3 text-center">
                     <span className="text-green-500">{isCopied && 'Link copied to clipboard'}</span>
                 </div>

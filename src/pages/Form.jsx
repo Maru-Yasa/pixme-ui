@@ -57,7 +57,7 @@ export const Form = () => {
                     <div className="grid grid-cols-12">
                         <Board className={'md:col-span-6 col-span-12 md:col-start-4 bg-white flex flex-col justify-start w-full min-w-full max-w-full'}>
                             <div className="text-start mb-3">
-                                <h1 className="text-3xl">Send message to {user.username}</h1>
+                                <h1 className="text-3xl">Send message to {user.username ? user.username : "_"}</h1>
                             </div>
                             <div className="">
                                 <form onSubmit={handleSubmit} action="">
