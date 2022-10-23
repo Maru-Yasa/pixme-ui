@@ -126,7 +126,7 @@ export const postAuth = async (dispatch) => {
         .from('profiles')
         .insert([
             {email: data.user.email, username: data.user.email, user_id: data.user.id },
-        ])
+        ]).select("*")
         if(error2) throw error2
         localStorage.setItem('_profile', JSON.stringify(profile))
         localStorage.setItem('_user', JSON.stringify(dataAuth))
