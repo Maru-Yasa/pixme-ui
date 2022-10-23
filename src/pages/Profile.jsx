@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react"
 import CopyToClipboard from "react-copy-to-clipboard"
 import { useNavigate } from "react-router-dom"
 import { getMessagaes, logout, me } from "../api/Api"
+import { validateEmail } from "../api/helpers"
 import { intializeHotJar } from "../api/hotjar"
 import { Anchor, Board, Button, Spinner } from "../components/Components"
 import { Message } from "../components/Message"
@@ -49,7 +50,7 @@ export const Profile = () => {
         {auth.profile ? <>
             <div className="flex flex-col justify-center mb-10 p-10">
                 <Board className={'flex flex-col bg-white'}>
-                    <h1 className="text-3xl text-center">Hello, {auth.profile.username ? auth.profile.username : <>
+                    <h1 className="text-3xl text-center">Hello, {!validateEmail(auth.profile.username) ? auth.profile.username : <>
                         <span className="text-red-500">please edit your username</span>
                     </>}</h1>
                     <div className="mb-3 text-center">
